@@ -1,12 +1,11 @@
 import { Injectable, NotAcceptableException } from '@nestjs/common';
 import { InjectModel } from "@nestjs/mongoose";
 import { Users } from "./users.schema";
-import { MongoRepository } from './repository/mongo.repository';
+import { MongoRepository } from './repository/users.mongo.repository';
 import { CreateRequestDto } from './dto/create-user.dto';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
 
-const jwt = require('jsonwebtoken')
 
 @Injectable()
 export class UsersService {
