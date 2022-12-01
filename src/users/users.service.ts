@@ -6,7 +6,7 @@ import { CreateRequestDto } from './dto/create-user.dto';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
 
-
+const jwt = require('jsonwebtoken')
 
 @Injectable()
 export class UsersService {
@@ -47,7 +47,6 @@ export class UsersService {
     }
 
     async updateById(id, Users: Users): Promise<Users> {
-        console.log("seves++>", Users)
         return this.UsersRepository.findByIdAndUpdate(id, Users)
     }
 

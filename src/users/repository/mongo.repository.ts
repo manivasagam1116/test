@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from "@nestjs/mongoose";
 import { FilterQuery, Model } from "mongoose";
-import { Repository } from 'src/domain/repository.interface';
+import { Repository } from './repository.interface';
 import { Users, UsersDocument } from '../users.schema';
 
 @Injectable()
@@ -23,7 +23,6 @@ export class MongoRepository implements Repository {
     }
 
     async findByIdAndUpdate(usersFilterQuery: FilterQuery<Users>, Users:Partial<Users>): Promise<Users> {
-        console.log("uhdsjk==>", Users);
         return this.UsersModel.findByIdAndUpdate(usersFilterQuery, Users, { new: true })
     }
 
