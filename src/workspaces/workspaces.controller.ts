@@ -1,7 +1,8 @@
 import { WorkspacesService } from "./workspaces.service";
-import { Body, Controller, Delete, Get, HttpStatus, Param, Post, UseGuards, Request, Put,Req, Res, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put,Req, Res, UseGuards, ValidationPipe } from "@nestjs/common";
 import { WorkSpaces } from "./workspaces.schema";
-import { AuthGuard } from '@nestjs/passport';
+import { CreateRequestDto } from "./dto/create.workspace.dto";
+import { AuthGuard } from "@nestjs/passport";
 
 
 @Controller('workspaces')
@@ -10,8 +11,8 @@ export class WorkspacesController {
 
 
     @Post()
-    async createUsers(@Body(new ValidationPipe({ transform: true }),)workSpaces: WorkSpaces, @Res() response): Promise<WorkSpaces> {
-        const worksapces = await this.WorkspacesService.createUser(workSpaces);
+    async createUsers(@Body(new ValidationPipe({ transform: true }),)createWorkspaceDto: CreateRequestDto,workSpaces: WorkSpaces, @Res() response): Promise<WorkSpaces> {
+        const worksapces = await this.WorkspacesService.createUser(createWorkspaceDto);
         return response.status(HttpStatus.CREATED).json({
             status: "success",
             statuscode: "201",
@@ -20,6 +21,7 @@ export class WorkspacesController {
         })
     }
     
+    @UseGuards(AuthGuard('jwt'))
     @Get()
     async readAll(@Res() res): Promise<WorkSpaces[]> {
         const worksapce = await this.WorkspacesService.readAll();
@@ -30,6 +32,7 @@ export class WorkspacesController {
         })
     }
 
+    @UseGuards(AuthGuard('jwt'))
     @Get('/:id')
     async findById(@Req() req,@Res() res, @Param('id') id:string): Promise<WorkSpaces> {
         
@@ -41,6 +44,7 @@ export class WorkspacesController {
         })
     }
 
+    @UseGuards(AuthGuard('jwt'))
     @Put('/:id')
     async update(@Req() req,@Res() res, @Param('id') id:string, @Body() workSpaces: WorkSpaces): Promise<WorkSpaces> {
     
@@ -53,6 +57,7 @@ export class WorkspacesController {
         })
     }
 
+    @UseGuards(AuthGuard('jwt'))
     @Delete('/:id')
     async delete(@Req() req,@Res() res, @Param('id') id:string): Promise<WorkSpaces> {
         const deletedWorkspaces = await this.WorkspacesService.deleteById(id);

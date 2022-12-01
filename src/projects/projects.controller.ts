@@ -1,6 +1,8 @@
 import { ProjectsService } from "./projects.service";
-import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put,Req, Res, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put,Req, Res, UseGuards, ValidationPipe } from "@nestjs/common";
 import { Projects } from "./projects.schema";
+import { CreateRequestDto } from "./dto/create.projects.dto";
+import { AuthGuard } from "@nestjs/passport";
 
 
 @Controller('projects')
@@ -9,8 +11,8 @@ export class ProjectsController {
 
 
     @Post()
-    async createUsers(@Body(new ValidationPipe({ transform: true }),)Projects: Projects, @Res() response): Promise<Projects> {
-        const projects = await this.ProjectsService.createUser(Projects);
+    async createUsers(@Body(new ValidationPipe({ transform: true }),)createProjectsDto: CreateRequestDto,Projects: Projects, @Res() response): Promise<Projects> {
+        const projects = await this.ProjectsService.createUser(createProjectsDto);
         return response.status(HttpStatus.CREATED).json({
             status: "success",
             statuscode: "201",
@@ -19,6 +21,7 @@ export class ProjectsController {
         })
     }
     
+    @UseGuards(AuthGuard('jwt'))
     @Get()
     async readAll(@Res() res): Promise<Projects[]> {
         const projects = await this.ProjectsService.readAll();
@@ -29,6 +32,7 @@ export class ProjectsController {
         })
     }
  
+    @UseGuards(AuthGuard('jwt'))
     @Get('/:id')
     async findById(@Req() req,@Res() res, @Param('id') id:string): Promise<Projects> {
         
@@ -40,6 +44,7 @@ export class ProjectsController {
         })
     }
    
+    @UseGuards(AuthGuard('jwt'))
     @Put('/:id')
     async update(@Req() req,@Res() res, @Param('id') id:string, @Body() Projects: Projects): Promise<Projects> {
     
@@ -52,6 +57,7 @@ export class ProjectsController {
         })
     }
 
+    @UseGuards(AuthGuard('jwt'))
     @Delete('/:id')
     async delete(@Req() req,@Res() res, @Param('id') id:string): Promise<Projects> {
         const deletedProjects = await this.ProjectsService.deleteById(id);
