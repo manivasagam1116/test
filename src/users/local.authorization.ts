@@ -13,10 +13,10 @@ export class JwtAuthorization extends PassportStrategy(Strategy)  {
   }
 
   //verified callback
-  async validate(username:string) :Promise<any>{
-    return  'done';
+  async validate(payload: any) {
+    console.log(payload);
+    return { userId: payload.sub, username: payload.username };
   }
-  
 }
 
 

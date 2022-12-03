@@ -30,6 +30,14 @@ export class Users {
 
   @Prop()
   hashRefreshToken: string;
+
+  @Prop()
+  workspaces:[
+    {
+      _id:string;
+      name:string;
+    }
+  ]
 }
 
 export const UsersSchema = SchemaFactory.createForClass(Users);

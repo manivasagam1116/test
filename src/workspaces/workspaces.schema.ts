@@ -19,6 +19,14 @@ export class WorkSpaces {
 
   @Prop()
   teamCollaborators: string;
+
+  @Prop()
+  projects:[
+    {
+      _id:string;
+      name:string;
+    }
+  ]
 }
 
 export const WorkSpacesSchema = SchemaFactory.createForClass(WorkSpaces);

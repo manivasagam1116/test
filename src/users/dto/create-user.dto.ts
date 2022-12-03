@@ -41,6 +41,15 @@ export class CreateRequestDto {
     @IsString()
     @IsOptional()
     hashRefreshToken: string;
+
+    @IsString()
+    @IsOptional()
+    workspaces:[
+        {
+          _id:string;
+          name:string;
+        }
+      ]
 }
 // export class CreateResponseDto{
 //             status: string;

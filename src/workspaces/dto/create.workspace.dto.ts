@@ -18,4 +18,12 @@ export class CreateRequestDto {
     @IsNotEmpty()
     teamCollaborators: string;
 
+    @IsString()
+    @IsNotEmpty()
+    projects:[
+        {
+          _id:string;
+          name:string;
+        }
+      ]
 }

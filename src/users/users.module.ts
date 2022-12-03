@@ -16,7 +16,8 @@ import { JwtAuthorization } from './local.authorization';
     signOptions: { expiresIn: '1d' },
   }),MongooseModule.forFeature([{name: Users.name, schema: UsersSchema}])],
   controllers: [UsersController],
-  providers: [UsersService,LocalAuthentication,JwtAuthorization]
+  providers: [UsersService,LocalAuthentication,JwtAuthorization],
+  exports:[UsersService]
 })
 export class UsersModule {}
 
