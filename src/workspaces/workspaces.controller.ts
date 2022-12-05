@@ -32,7 +32,7 @@ export class WorkspacesController {
             result: users
         })
     }catch(error){
-        return response.status(HttpStatus.NOT_FOUND).json({
+        return response.status(HttpStatus.BAD_REQUEST).json({
            
             statuscode: "400",
             message: Error,
@@ -45,49 +45,95 @@ export class WorkspacesController {
     @UseGuards(AuthGuard('jwt'))
     @Get()
     async readAll(@Res() res): Promise<WorkSpaces[]> {
+        try{
         const worksapce = await this.WorkspacesService.readAll();
+        if(!worksapce){
+            throw "worksapces not found"
+        }
         return res.status(HttpStatus.OK).json({
             status: "success",
             statuscode: "200",
             result: worksapce
         })
+    }catch(error){
+        return res.status(HttpStatus.BAD_REQUEST).json({
+           
+            statuscode: "400",
+            message: Error,
+           
+        })
+    }
     }
 
     @UseGuards(AuthGuard('jwt'))
     @Get('/:id')
     async findById(@Req() req,@Res() res, @Param('id') id:string): Promise<WorkSpaces> {
-        
+        try{
         const worksapces = await this.WorkspacesService.GetreadById(id);
+        if(!worksapces){
+            throw "worksapces not found"
+        }
         return res.status(HttpStatus.OK).json({
             status: "success",
             statuscode: "200",
             result: worksapces
         })
+    }catch(error){
+        return res.status(HttpStatus.BAD_REQUEST).json({
+           
+            statuscode: "400",
+            message: Error,
+           
+        })
+    }
     }
 
     @UseGuards(AuthGuard('jwt'))
     @Put('/:id')
     async update(@Req() req,@Res() res, @Param('id') id:string, @Body() workSpaces: WorkSpaces): Promise<WorkSpaces> {
-    
+        try{
         const updatedWorkspaces = await this.WorkspacesService.updateById(id, workSpaces);
+        if(!updatedWorkspaces){
+            throw "updatedWorkspaces not found"
+        }
         return res.status(HttpStatus.OK).json({
             status: "success",
             statuscode: "202",
             message: "student data updated successfully",
             result: updatedWorkspaces
         })
+    }catch(error){
+        return res.status(HttpStatus.BAD_REQUEST).json({
+           
+            statuscode: "400",
+            message: Error,
+           
+        })
+    }
     }
 
     @UseGuards(AuthGuard('jwt'))
     @Delete('/:id')
     async delete(@Req() req,@Res() res, @Param('id') id:string): Promise<WorkSpaces> {
+        try{
         const deletedWorkspaces = await this.WorkspacesService.deleteById(id);
+        if(!deletedWorkspaces){
+            throw "deletedWorkspaces not found"
+        }
         return res.status(HttpStatus.OK).json({
             status: "success",
             statuscode: "200",
             message: "student data deleted successfully",
             result: deletedWorkspaces
         })
+    }catch(error){
+        return res.status(HttpStatus.BAD_REQUEST).json({
+           
+            statuscode: "400",
+            message: Error,
+           
+        })
+    }
     }
 }
 

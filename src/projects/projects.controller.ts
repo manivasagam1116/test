@@ -31,7 +31,7 @@ export class ProjectsController {
             result: users
         })
     }catch(error){
-        return response.status(HttpStatus.NOT_FOUND).json({
+        return response.status(HttpStatus.BAD_REQUEST).json({
            
             statuscode: "400",
             message: Error,
@@ -44,24 +44,51 @@ export class ProjectsController {
     @UseGuards(AuthGuard('jwt'))
     @Get()
     async readAll(@Res() res): Promise<Projects[]> {
-        const projects = await this.ProjectsService.readAll();
+        try{
+            const projects = await this.ProjectsService.readAll();        
+            if(!projects){
+                throw "projects not found"
+            }
+        
         return res.status(HttpStatus.OK).json({
             status: "success",
             statuscode: "200",
             result: projects
         })
+    }catch(error){
+        return res.status(HttpStatus.BAD_REQUEST).json({
+           
+            statuscode: "400",
+            message: Error,
+           
+        })
+
+    }
     }
  
     @UseGuards(AuthGuard('jwt'))
     @Get('/:id')
     async findById(@Req() req,@Res() res, @Param('id') id:string): Promise<Projects> {
+        try{
+            const projects = await this.ProjectsService.GetreadById(id);
+            if(!projects){
+                throw "projects not found"
+            }
         
-        const projects = await this.ProjectsService.GetreadById(id);
         return res.status(HttpStatus.OK).json({
             status: "success",
             statuscode: "200",
             result: projects
         })
+    }catch(error){
+        return res.status(HttpStatus.BAD_REQUEST).json({
+           
+            statuscode: "400",
+            message: Error,
+           
+        })
+
+    }
     }
 
     // @Put('/:id')
@@ -80,26 +107,51 @@ export class ProjectsController {
     @UseGuards(AuthGuard('jwt'))
     @Put('/:id')
     async update(@Req() req,@Res() res, @Param('id') id:string, @Body() Projects: Projects): Promise<Projects> {
-    
-        const updatedProjects = await this.ProjectsService.updateById(id, Projects);
+        try{
+            const updatedProjects = await this.ProjectsService.updateById(id, Projects);
+            if(!updatedProjects){
+                throw "projects not found"
+            }
         return res.status(HttpStatus.OK).json({
             status: "success",
             statuscode: "202",
             message: "student data updated successfully",
             result: updatedProjects
         })
+    }catch(error){
+        return res.status(HttpStatus.BAD_REQUEST).json({
+           
+            statuscode: "400",
+            message: Error,
+           
+        })
+
+    }
     }
 
     @UseGuards(AuthGuard('jwt'))
     @Delete('/:id')
     async delete(@Req() req,@Res() res, @Param('id') id:string): Promise<Projects> {
-        const deletedProjects = await this.ProjectsService.deleteById(id);
+        try{
+            const deletedProjects = await this.ProjectsService.deleteById(id);
+            if(!deletedProjects){
+                throw "projects not found"
+            }
         return res.status(HttpStatus.OK).json({
             status: "success",
             statuscode: "200",
             message: "student data deleted successfully",
             result: deletedProjects
         })
+    }catch(error){
+        return res.status(HttpStatus.BAD_REQUEST).json({
+           
+            statuscode: "400",
+            message: Error,
+           
+        })
+
+    }
     }
 }
 
