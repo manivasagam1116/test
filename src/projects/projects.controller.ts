@@ -91,19 +91,6 @@ export class ProjectsController {
     }
     }
 
-    // @Put('/:id')
-    // async change(@Req() req,@Res() res, @Param('id') id:string, @Body() Projects: Projects): Promise<Projects> {
-    
-    //     const updatedProjects = await this.ProjectsService.updateById(id, Projects);
-    //     return res.status(HttpStatus.OK).json({
-    //         status: "success",
-    //         statuscode: "202",
-    //         message: "student data updated successfully",
-    //         result: updatedProjects,
-    //         $push: { : "" }
-    //     })
-    // }
-   
     @UseGuards(AuthGuard('jwt'))
     @Put('/:id')
     async update(@Req() req,@Res() res, @Param('id') id:string, @Body() Projects: Projects): Promise<Projects> {
@@ -117,6 +104,7 @@ export class ProjectsController {
             statuscode: "202",
             message: "student data updated successfully",
             result: updatedProjects
+           // $push: { : "" }
         })
     }catch(error){
         return res.status(HttpStatus.BAD_REQUEST).json({

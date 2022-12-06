@@ -9,6 +9,7 @@ import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class UsersService {
+   
 
     constructor(@InjectModel(Users.name) private UsersRepository: MongoRepository, private jwtService: JwtService) { }
 
@@ -32,7 +33,6 @@ export class UsersService {
             access_token: this.jwtService.sign(payload),
         };
     }
-
 
     async createUser(createUsersDto: CreateRequestDto): Promise<Users> {
         return this.UsersRepository.create(createUsersDto);

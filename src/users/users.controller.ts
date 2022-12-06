@@ -7,15 +7,17 @@ import { AuthGuard } from '@nestjs/passport';
 
 @Controller('users')
 export class UsersController {
+    
     constructor(private readonly UsersService: UsersService) { }
 
     @UseGuards(AuthGuard('local'))
-    @Post('auth/login')
+    @Post('/login')
     async login(@Request() req) {
         return this.UsersService.login(req.user);
     }
 
-    @Post()
+    @UseGuards(AuthGuard('jwt'))
+    @Post('/signin')
     async createUsers(@Body(new ValidationPipe({ transform: true }),) createUsersDto: CreateRequestDto, @Res() response): Promise<Users> {
         try{
             const Users = await this.UsersService.createUser(createUsersDto);

@@ -17,6 +17,9 @@ export class Users {
   sex: string;
 
   @Prop()
+  email:string;
+
+  @Prop()
   password: string;
 
   @Prop()

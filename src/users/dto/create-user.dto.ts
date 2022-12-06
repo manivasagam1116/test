@@ -1,4 +1,4 @@
-import { IsString,IsDate,IsNotEmpty,IsOptional,IsEnum } from 'class-validator';
+import { IsString,IsDate,IsNotEmpty,IsOptional,IsEnum,IsEmail } from 'class-validator';
 
 enum gender{
     male="male",
@@ -21,6 +21,10 @@ export class CreateRequestDto {
     @IsNotEmpty()
     @IsEnum(gender)
     sex: string;
+
+    @IsEmail()
+    @IsNotEmpty()
+    email:string;
 
     @IsString()
     @IsNotEmpty()
