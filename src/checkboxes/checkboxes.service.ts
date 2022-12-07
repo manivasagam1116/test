@@ -7,24 +7,24 @@ import { CreateRequestDto } from './dto/create.checkbox.dto';
 @Injectable()
 export class CheckboxesService {
    
-    constructor(@InjectModel(Checkboxes.name) private UsersRepository: MongoRepository) { }
+    constructor(@InjectModel(Checkboxes.name) private CheckboxesRepository: MongoRepository) { }
 
     async createUser(createUsersDto: CreateRequestDto): Promise<Checkboxes> {
-        return this.UsersRepository.create(createUsersDto);
+        return this.CheckboxesRepository.create(createUsersDto);
     }
     async readAll(): Promise<Checkboxes[]> {
-        return this.UsersRepository.find({});
+        return this.CheckboxesRepository.find({});
     }
 
     async GetreadById(id): Promise<Checkboxes> {
-        return this.UsersRepository.findById(id);
+        return this.CheckboxesRepository.findById(id);
     }
 
     async updateById(id, Checkboxes: Checkboxes): Promise<Checkboxes> {
-        return this.UsersRepository.findByIdAndUpdate(id, Checkboxes)
+        return this.CheckboxesRepository.findByIdAndUpdate(id, Checkboxes)
     }
 
     async deleteById(id): Promise<any> {
-        return this.UsersRepository.findByIdAndDelete(id);
+        return this.CheckboxesRepository.findByIdAndDelete(id);
     }
 }

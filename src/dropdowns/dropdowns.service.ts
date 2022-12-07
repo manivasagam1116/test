@@ -7,24 +7,24 @@ import { Dropdowns } from './dropdowns.schema';
 @Injectable()
 export class DropdownsService {
    
-    constructor(@InjectModel(Dropdowns.name) private UsersRepository: MongoRepository) { }
+    constructor(@InjectModel(Dropdowns.name) private DropdownsRepository: MongoRepository) { }
 
     async createUser(createUsersDto: CreateRequestDto): Promise<Dropdowns> {
-        return this.UsersRepository.create(createUsersDto);
+        return this.DropdownsRepository.create(createUsersDto);
     }
     async readAll(): Promise<Dropdowns[]> {
-        return this.UsersRepository.find({});
+        return this.DropdownsRepository.find({});
     }
 
     async GetreadById(id): Promise<Dropdowns> {
-        return this.UsersRepository.findById(id);
+        return this.DropdownsRepository.findById(id);
     }
 
     async updateById(id, Dropdowns: Dropdowns): Promise<Dropdowns> {
-        return this.UsersRepository.findByIdAndUpdate(id, Dropdowns)
+        return this.DropdownsRepository.findByIdAndUpdate(id, Dropdowns)
     }
 
     async deleteById(id): Promise<any> {
-        return this.UsersRepository.findByIdAndDelete(id);
+        return this.DropdownsRepository.findByIdAndDelete(id);
     }
 }

@@ -7,24 +7,24 @@ import { CreateRequestDto } from './dto/create.buttons.dto';
 @Injectable()
 export class ButtonsService {
    
-    constructor(@InjectModel(Buttons.name) private UsersRepository: MongoRepository) { }
+    constructor(@InjectModel(Buttons.name) private ButtonsRepository: MongoRepository) { }
 
     async createUser(createUsersDto: CreateRequestDto): Promise<Buttons> {
-        return this.UsersRepository.create(createUsersDto);
+        return this.ButtonsRepository.create(createUsersDto);
     }
     async readAll(): Promise<Buttons[]> {
-        return this.UsersRepository.find({});
+        return this.ButtonsRepository.find({});
     }
 
     async GetreadById(id): Promise<Buttons> {
-        return this.UsersRepository.findById(id);
+        return this.ButtonsRepository.findById(id);
     }
 
     async updateById(id, Buttons: Buttons): Promise<Buttons> {
-        return this.UsersRepository.findByIdAndUpdate(id, Buttons)
+        return this.ButtonsRepository.findByIdAndUpdate(id, Buttons)
     }
 
     async deleteById(id): Promise<any> {
-        return this.UsersRepository.findByIdAndDelete(id);
+        return this.ButtonsRepository.findByIdAndDelete(id);
     }
 }

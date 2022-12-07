@@ -7,24 +7,24 @@ import { CreateRequestDto } from './dto/create.inputfeilds.dto';
 @Injectable()
 export class InputfeildsService {
    
-    constructor(@InjectModel(Inputfeilds.name) private UsersRepository: MongoRepository) { }
+    constructor(@InjectModel(Inputfeilds.name) private InputfeildsRepository: MongoRepository) { }
 
     async createUser(createUsersDto: CreateRequestDto): Promise<Inputfeilds> {
-        return this.UsersRepository.create(createUsersDto);
+        return this.InputfeildsRepository.create(createUsersDto);
     }
     async readAll(): Promise<Inputfeilds[]> {
-        return this.UsersRepository.find({});
+        return this.InputfeildsRepository.find({});
     }
 
     async GetreadById(id): Promise<Inputfeilds> {
-        return this.UsersRepository.findById(id);
+        return this.InputfeildsRepository.findById(id);
     }
 
     async updateById(id, Inputfeilds: Inputfeilds): Promise<Inputfeilds> {
-        return this.UsersRepository.findByIdAndUpdate(id, Inputfeilds)
+        return this.InputfeildsRepository.findByIdAndUpdate(id, Inputfeilds)
     }
 
     async deleteById(id): Promise<any> {
-        return this.UsersRepository.findByIdAndDelete(id);
+        return this.InputfeildsRepository.findByIdAndDelete(id);
     }
 }
