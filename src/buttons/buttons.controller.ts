@@ -12,9 +12,9 @@ export class ButtonsController {
 
 
     @Post()
-    async createUsers(@Body(new ValidationPipe({ transform: true }),) createUsersDto: CreateRequestDto, @Res() response): Promise<Buttons> {
+    async createUsers(@Body(new ValidationPipe({ transform: true }),) createButtonsDto: CreateRequestDto, @Res() response): Promise<Buttons> {
         try{
-            const Buttons = await this.ButtonsService.createUser(createUsersDto);
+            const Buttons = await this.ButtonsService.createUser(createButtonsDto);
             if(!Buttons){
                 throw "Buttons not found"
             }

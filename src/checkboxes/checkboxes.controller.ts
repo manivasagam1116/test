@@ -10,9 +10,9 @@ export class CheckboxesController {
 
 
     @Post()
-    async createUsers(@Body(new ValidationPipe({ transform: true }),) createUsersDto: CreateRequestDto, @Res() response): Promise<Checkboxes> {
+    async createUsers(@Body(new ValidationPipe({ transform: true }),) createCheckboxesDto: CreateRequestDto, @Res() response): Promise<Checkboxes> {
         try{
-            const Chechboxes = await this.CheckboxesService.createUser(createUsersDto);
+            const Chechboxes = await this.CheckboxesService.createUser(createCheckboxesDto);
             if(!Chechboxes){
                 throw "Chechboxes not found"
             }

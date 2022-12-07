@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from "@nestjs/mongoose";
-import { Model } from "mongoose";
 import { MongoRepository } from './repository/workspaces.mongo.repository';
-import { WorkSpaces, WorkSpacesDocument } from "./workspaces.schema";
+import { WorkSpaces} from "./workspaces.schema";
 
 @Injectable()
 export class WorkspacesService {

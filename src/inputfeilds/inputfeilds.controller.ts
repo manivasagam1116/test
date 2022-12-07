@@ -12,9 +12,9 @@ export class InputfeildsController {
 
 
     @Post()
-    async createUsers(@Body(new ValidationPipe({ transform: true }),) createUsersDto: CreateRequestDto, @Res() response): Promise<Inputfeilds> {
+    async createUsers(@Body(new ValidationPipe({ transform: true }),) createInputfeildsDto: CreateRequestDto, @Res() response): Promise<Inputfeilds> {
         try{
-            const Inpitfeilds = await this.InputfeildsService.createUser(createUsersDto);
+            const Inpitfeilds = await this.InputfeildsService.createUser(createInputfeildsDto);
             if(!Inpitfeilds){
                 throw "Inpitfeilds not found"
             }

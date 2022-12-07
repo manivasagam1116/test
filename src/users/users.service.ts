@@ -13,6 +13,8 @@ export class UsersService {
 
     constructor(@InjectModel(Users.name) private UsersRepository: MongoRepository, private jwtService: JwtService) { }
 
+//---Token Generate---
+
     async validateUser(username: string, password: string): Promise<any> {
         const user = await this.UsersRepository.findOne({ username });
         // console.log("getuser==>",user);

@@ -9,8 +9,8 @@ export class CheckboxesService {
    
     constructor(@InjectModel(Checkboxes.name) private CheckboxesRepository: MongoRepository) { }
 
-    async createUser(createUsersDto: CreateRequestDto): Promise<Checkboxes> {
-        return this.CheckboxesRepository.create(createUsersDto);
+    async createUser(createCheckboxesDto: CreateRequestDto): Promise<Checkboxes> {
+        return this.CheckboxesRepository.create(createCheckboxesDto);
     }
     async readAll(): Promise<Checkboxes[]> {
         return this.CheckboxesRepository.find({});

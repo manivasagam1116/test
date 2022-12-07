@@ -45,6 +45,7 @@ export class Users {
 
 export const UsersSchema = SchemaFactory.createForClass(Users);
 
+//---Hash Password---
 
 const bcrypt = require('bcryptjs');
 const SALT_WORK_FACTOR = 10;

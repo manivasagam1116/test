@@ -9,8 +9,8 @@ export class TextareasService {
    
     constructor(@InjectModel(Textareas.name) private TextareasRepository: MongoRepository) { }
 
-    async createUser(createUsersDto: CreateRequestDto): Promise<Textareas> {
-        return this.TextareasRepository.create(createUsersDto);
+    async createUser(createTextareasDto: CreateRequestDto): Promise<Textareas> {
+        return this.TextareasRepository.create(createTextareasDto);
     }
     async readAll(): Promise<Textareas[]> {
         return this.TextareasRepository.find({});

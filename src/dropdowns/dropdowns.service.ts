@@ -9,8 +9,8 @@ export class DropdownsService {
    
     constructor(@InjectModel(Dropdowns.name) private DropdownsRepository: MongoRepository) { }
 
-    async createUser(createUsersDto: CreateRequestDto): Promise<Dropdowns> {
-        return this.DropdownsRepository.create(createUsersDto);
+    async createUser(createDropdownssDto: CreateRequestDto): Promise<Dropdowns> {
+        return this.DropdownsRepository.create(createDropdownssDto);
     }
     async readAll(): Promise<Dropdowns[]> {
         return this.DropdownsRepository.find({});

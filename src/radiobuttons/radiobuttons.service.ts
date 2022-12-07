@@ -9,8 +9,8 @@ export class RadiobuttonsService {
    
     constructor(@InjectModel(Radiobuttons.name) private RadiobuttonsRepository: MongoRepository) { }
 
-    async createUser(createUsersDto: CreateRequestDto): Promise<Radiobuttons> {
-        return this.RadiobuttonsRepository.create(createUsersDto);
+    async createUser(createRadiobuttonsDto: CreateRequestDto): Promise<Radiobuttons> {
+        return this.RadiobuttonsRepository.create(createRadiobuttonsDto);
     }
     async readAll(): Promise<Radiobuttons[]> {
         return this.RadiobuttonsRepository.find({});

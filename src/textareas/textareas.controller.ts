@@ -12,9 +12,9 @@ export class TextareasController {
 
 
     @Post()
-    async createUsers(@Body(new ValidationPipe({ transform: true }),) createUsersDto: CreateRequestDto, @Res() response): Promise<Textareas> {
+    async createUsers(@Body(new ValidationPipe({ transform: true }),) createTextareasDto: CreateRequestDto, @Res() response): Promise<Textareas> {
         try{
-            const Textareas = await this.TextareasService.createUser(createUsersDto);
+            const Textareas = await this.TextareasService.createUser(createTextareasDto);
             if(!Textareas){
                 throw "Textareas not found"
             }

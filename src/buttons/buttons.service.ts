@@ -9,8 +9,8 @@ export class ButtonsService {
    
     constructor(@InjectModel(Buttons.name) private ButtonsRepository: MongoRepository) { }
 
-    async createUser(createUsersDto: CreateRequestDto): Promise<Buttons> {
-        return this.ButtonsRepository.create(createUsersDto);
+    async createUser(createButtonsDto: CreateRequestDto): Promise<Buttons> {
+        return this.ButtonsRepository.create(createButtonsDto);
     }
     async readAll(): Promise<Buttons[]> {
         return this.ButtonsRepository.find({});

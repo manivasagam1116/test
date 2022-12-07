@@ -9,8 +9,8 @@ export class InputfeildsService {
    
     constructor(@InjectModel(Inputfeilds.name) private InputfeildsRepository: MongoRepository) { }
 
-    async createUser(createUsersDto: CreateRequestDto): Promise<Inputfeilds> {
-        return this.InputfeildsRepository.create(createUsersDto);
+    async createUser(createInputfeildsDto: CreateRequestDto): Promise<Inputfeilds> {
+        return this.InputfeildsRepository.create(createInputfeildsDto);
     }
     async readAll(): Promise<Inputfeilds[]> {
         return this.InputfeildsRepository.find({});

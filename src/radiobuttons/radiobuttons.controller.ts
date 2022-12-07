@@ -12,9 +12,9 @@ export class RadiobuttonsController {
 
 
     @Post()
-    async createUsers(@Body(new ValidationPipe({ transform: true }),) createUsersDto: CreateRequestDto, @Res() response): Promise<Radiobuttons> {
+    async createUsers(@Body(new ValidationPipe({ transform: true }),) createRadiobuttonsDto: CreateRequestDto, @Res() response): Promise<Radiobuttons> {
         try{
-            const Radiobuttons = await this.RadiobuttonsService.createUser(createUsersDto);
+            const Radiobuttons = await this.RadiobuttonsService.createUser(createRadiobuttonsDto);
             if(!Radiobuttons){
                 throw "Radiobuttons not found"
             }

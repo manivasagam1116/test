@@ -11,9 +11,9 @@ export class DropdownsController {
     constructor(private readonly DropdownsService: DropdownsService) { }
 
     @Post()
-    async createUsers(@Body(new ValidationPipe({ transform: true }),) createUsersDto: CreateRequestDto, @Res() response): Promise<Dropdowns> {
+    async createUsers(@Body(new ValidationPipe({ transform: true }),) createDropdownssDto: CreateRequestDto, @Res() response): Promise<Dropdowns> {
         try{
-            const Dropdowns = await this.DropdownsService.createUser(createUsersDto);
+            const Dropdowns = await this.DropdownsService.createUser(createDropdownssDto);
             if(!Dropdowns){
                 throw "Dropdowns not found"
             }
